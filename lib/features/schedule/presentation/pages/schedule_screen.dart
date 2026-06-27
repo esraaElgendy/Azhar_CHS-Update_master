@@ -190,7 +190,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.inputFillDark
+            ? AppColors.cardDark
             : AppColors.inputFillLight,
         borderRadius: BorderRadius.circular(16),
       ),
@@ -275,7 +275,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
       width: double.infinity,
       padding: EdgeInsets.symmetric(vertical: fullPage ? 80 : 40),
       decoration: BoxDecoration(
-        color: isDark ? AppColors.inputFillDark : AppColors.inputFillLight,
+        color: isDark ? AppColors.cardDark : AppColors.inputFillLight,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(

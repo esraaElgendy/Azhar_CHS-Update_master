@@ -161,7 +161,7 @@ class _GradesScreenState extends State<GradesScreen> {
       width: double.infinity,
       padding: const EdgeInsets.all(AppTypography.spacingXL),
       decoration: BoxDecoration(
-        color: isDark ? AppColors.surfaceDark : Colors.white,
+        color: isDark ? AppColors.cardDark : Colors.white,
         borderRadius: BorderRadius.circular(AppTypography.radius3XL),
         boxShadow: [
           BoxShadow(
@@ -306,7 +306,7 @@ class _GradesScreenState extends State<GradesScreen> {
         return Container(
           margin: const EdgeInsets.only(bottom: AppTypography.spacingL),
           decoration: BoxDecoration(
-            color: isDark ? AppColors.surfaceDark : Colors.white,
+            color: isDark ? AppColors.cardDark : Colors.white,
             borderRadius: BorderRadius.circular(AppTypography.radius2XL),
             boxShadow: [
               BoxShadow(

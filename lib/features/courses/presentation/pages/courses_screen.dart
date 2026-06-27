@@ -207,7 +207,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
                                   ),
                                   filled: true,
                                   fillColor: isDark
-                                      ? AppColors.inputFillDark
+                                      ? AppColors.cardDark
                                       : AppColors.cardLight.withValues(
                                           alpha: 0.5,
                                         ),

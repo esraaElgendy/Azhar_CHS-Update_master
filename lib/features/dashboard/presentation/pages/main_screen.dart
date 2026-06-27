@@ -131,7 +131,7 @@ class _MainScreenState extends State<MainScreen> {
     final isSelected = _currentIndex == index;
     final Color selectedColor = AppColors.primary;
     final Color unselectedColor =
-        isDark ? Colors.white38 : AppColors.textGrey600;
+        isDark ? AppColors.textGreyDark : AppColors.textGrey600;
 
     return Expanded(
       child: InkWell(

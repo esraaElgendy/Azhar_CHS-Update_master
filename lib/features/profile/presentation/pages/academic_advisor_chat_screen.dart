@@ -151,7 +151,7 @@ class _MessageInput extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.fromLTRB(20, 12, 20, 20),
       decoration: BoxDecoration(
-        color: isDark ? AppColors.surfaceDark : Colors.white,
+        color: isDark ? AppColors.cardDark : Colors.white,
         border: Border(top: BorderSide(color: isDark ? AppColors.borderDark : AppColors.borderLight)),
       ),
       child: Row(
@@ -169,7 +169,7 @@ class _MessageInput extends StatelessWidget {
                 hintText: hintText,
                 hintStyle: GoogleFonts.cairo(color: AppColors.textGrey),
                 filled: true,
-                fillColor: isDark ? AppColors.inputFillDark : AppColors.inputFillLight,
+                fillColor: isDark ? AppColors.cardDark : AppColors.inputFillLight,
                 contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(16),

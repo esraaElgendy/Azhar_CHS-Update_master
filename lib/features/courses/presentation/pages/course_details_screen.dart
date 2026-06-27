@@ -148,7 +148,7 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
                         style: ElevatedButton.styleFrom(
                           backgroundColor: isRegistered
                               ? (isDark
-                                    ? AppColors.inputFillDark
+                                    ? AppColors.cardDark
                                     : const Color(0xffDBDEFF))
                               : AppColors.primary,
                           shape: RoundedRectangleBorder(
@@ -370,7 +370,7 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: isRegistered
                         ? (isDark
-                              ? AppColors.inputFillDark
+                              ? AppColors.cardDark
                               : const Color(0xffDBDEFF))
                         : AppColors.primary,
                     shape: RoundedRectangleBorder(

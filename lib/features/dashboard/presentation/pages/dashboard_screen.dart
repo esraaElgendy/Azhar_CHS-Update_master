@@ -196,6 +196,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         value: gpa.toStringAsFixed(2),
                         icon: Icons.analytics,
                         isDark: isDark,
+                        iconColorType: 'purple',
                       ),
                       const SizedBox(height: 12),
                       _buildStatCard(
@@ -204,6 +205,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         value: completedHours.toString(),
                         icon: Icons.check_circle_outline,
                         isDark: isDark,
+                        iconColorType: 'blue',
                       ),
                       const SizedBox(height: 12),
                       _buildStatCard(
@@ -212,6 +214,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         value: remainingHours.toString(),
                         icon: Icons.hourglass_empty,
                         isDark: isDark,
+                        iconColorType: 'green',
                       ),
                       const SizedBox(height: 24),
 
@@ -219,10 +222,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       Container(
                         padding: const EdgeInsets.all(16),
                         decoration: BoxDecoration(
-                          color: isDark ? AppColors.inputFillDark : AppColors.inputFillLight,
+                          color: isDark ? AppColors.cardDark : AppColors.inputFillLight,
                           borderRadius: BorderRadius.circular(16),
                           border: Border.all(
-                            color: isDark ? AppColors.surfaceDark : AppColors.primary.withValues(alpha: 0.1),
+                            color: isDark ? AppColors.primary.withValues(alpha: 0.2) : AppColors.primary.withValues(alpha: 0.1),
                           ),
                         ),
                         child: Column(
@@ -233,7 +236,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               style: GoogleFonts.cairo(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
-                                color: isDark ? Colors.white : Colors.black,
+                                color: isDark ? AppColors.textDark : Colors.black,
                               ),
                             ),
                             const SizedBox(height: 12),
@@ -244,7 +247,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                   "${(progress * 100).toStringAsFixed(1)}% ${l10n.overallProgress}",
                                   style: GoogleFonts.cairo(
                                     fontSize: 13,
-                                    color: AppColors.textGrey,
+                                    color: isDark ? AppColors.textGreyDark : AppColors.textGrey,
                                   ),
                                 ),
                                 Text(
@@ -252,6 +255,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                   style: GoogleFonts.cairo(
                                     fontSize: 13,
                                     fontWeight: FontWeight.bold,
+                                    color: isDark ? AppColors.textDark : Colors.black,
                                   ),
                                 ),
                               ],
@@ -262,7 +266,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               child: LinearProgressIndicator(
                                 value: progress.clamp(0.0, 1.0),
                                 minHeight: 10,
-                                backgroundColor: isDark ? Colors.grey[900] : Colors.white,
+                                backgroundColor: isDark ? AppColors.surfaceDark : Colors.white,
                                 valueColor: AlwaysStoppedAnimation<Color>(theme.primaryColor),
                               ),
                             ),
@@ -284,24 +288,28 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             l10n.courseRegistration,
                             Icons.app_registration,
                             () => Navigator.push(context, MaterialPageRoute(builder: (_) => const CoursesScreen())),
+                            iconColorType: 'purple',
                           ),
                           _buildMenuCard(
                             context,
                             l10n.mySchedule,
                             Icons.calendar_month,
                             () => Navigator.push(context, MaterialPageRoute(builder: (_) => const ScheduleScreen())),
+                            iconColorType: 'blue',
                           ),
                           _buildMenuCard(
                             context,
                             l10n.myGrades,
                             Icons.grade,
                             () => Navigator.push(context, MaterialPageRoute(builder: (_) => const GradesScreen())),
+                            iconColorType: 'green',
                           ),
                           _buildMenuCard(
                             context,
                             l10n.profile,
                             Icons.person_outline,
                             () => Navigator.push(context, MaterialPageRoute(builder: (_) => const ProfileScreen())),
+                            iconColorType: 'purple',
                           ),
                         ],
                       ),
@@ -331,20 +339,45 @@ class _DashboardScreenState extends State<DashboardScreen> {
     required String value,
     required IconData icon,
     required bool isDark,
+    String iconColorType = 'purple',
   }) {
     final theme = Theme.of(context);
+    
+    // Define icon background and icon color based on type
+    Color iconBgColor;
+    Color iconColor;
+    
+    switch (iconColorType) {
+      case 'purple':
+        iconBgColor = isDark ? AppColors.cardIconPurpleDark.withValues(alpha: 0.3) : AppColors.cardIconPurple;
+        iconColor = AppColors.cardIconPurpleDark;
+        break;
+      case 'blue':
+        iconBgColor = isDark ? AppColors.cardIconBlueDark.withValues(alpha: 0.3) : AppColors.cardIconBlue;
+        iconColor = AppColors.cardIconBlueDark;
+        break;
+      case 'green':
+        iconBgColor = isDark ? AppColors.cardIconGreenDark.withValues(alpha: 0.3) : AppColors.cardIconGreen;
+        iconColor = AppColors.cardIconGreenDark;
+        break;
+      default:
+        iconBgColor = isDark ? AppColors.cardIconPurpleDark.withValues(alpha: 0.3) : AppColors.cardIconPurple;
+        iconColor = AppColors.cardIconPurpleDark;
+    }
+    
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
       decoration: BoxDecoration(
-        color: isDark ? AppColors.inputFillDark : AppColors.inputFillLight,
+        color: isDark ? AppColors.cardDark : Colors.grey[50],
         borderRadius: BorderRadius.circular(16),
-        border: Border(
-          left: BorderSide(color: theme.primaryColor, width: 6),
+        border: Border.all(
+          color: isDark ? AppColors.primary.withValues(alpha: 0.3) : AppColors.primary.withValues(alpha: 0.15),
+          width: 1,
         ),
         boxShadow: isDark ? [] : [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.03),
-            blurRadius: 10,
+            color: Colors.black.withValues(alpha: 0.06),
+            blurRadius: 12,
             offset: const Offset(0, 4),
           ),
         ],
@@ -352,79 +385,119 @@ class _DashboardScreenState extends State<DashboardScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                title,
-                style: GoogleFonts.cairo(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  color: isDark ? Colors.white70 : Colors.black54,
-                ),
-              ),
-              Text(
-                value,
-                style: GoogleFonts.cairo(
-                  fontSize: 26,
-                  fontWeight: FontWeight.bold,
-                  color: theme.primaryColor,
-                ),
-              ),
-            ],
-          ),
+          // Icon section
           Container(
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: isDark ? AppColors.surfaceDark : Colors.white,
-              shape: BoxShape.circle,
+              color: iconBgColor,
+              borderRadius: BorderRadius.circular(12),
             ),
-            child: Icon(icon, color: AppColors.primary, size: 28),
+            child: Icon(icon, color: iconColor, size: 28),
+          ),
+          const SizedBox(width: 16),
+          // Text section
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: GoogleFonts.cairo(
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                    color: isDark ? Colors.white : AppColors.primary,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  value,
+                  style: GoogleFonts.cairo(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: isDark ? AppColors.textGreyDark : Colors.grey[600],
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildMenuCard(BuildContext context, String title, IconData icon, VoidCallback onTap) {
+  Widget _buildMenuCard(
+    BuildContext context, 
+    String title, 
+    IconData icon, 
+    VoidCallback onTap, {
+    String iconColorType = 'purple',
+  }) {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
+    
+    // Define icon background and icon color based on type
+    Color iconBgColor;
+    Color iconColor;
+    
+    switch (iconColorType) {
+      case 'purple':
+        iconBgColor = isDark ? AppColors.cardIconPurpleDark.withValues(alpha: 0.3) : AppColors.cardIconPurple;
+        iconColor = AppColors.cardIconPurpleDark;
+        break;
+      case 'blue':
+        iconBgColor = isDark ? AppColors.cardIconBlueDark.withValues(alpha: 0.3) : AppColors.cardIconBlue;
+        iconColor = AppColors.cardIconBlueDark;
+        break;
+      case 'green':
+        iconBgColor = isDark ? AppColors.cardIconGreenDark.withValues(alpha: 0.3) : AppColors.cardIconGreen;
+        iconColor = AppColors.cardIconGreenDark;
+        break;
+      default:
+        iconBgColor = isDark ? AppColors.cardIconPurpleDark.withValues(alpha: 0.3) : AppColors.cardIconPurple;
+        iconColor = AppColors.cardIconPurpleDark;
+    }
 
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(20),
+      borderRadius: BorderRadius.circular(16),
       child: Container(
+        padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: isDark ? AppColors.inputFillDark : AppColors.inputFillLight,
-          borderRadius: BorderRadius.circular(20),
-          border: isDark ? Border.all(color: AppColors.dividerDark, width: 0.5) : null,
+          color: isDark ? AppColors.cardDark : Colors.grey[50],
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(
+            color: isDark ? AppColors.primary.withValues(alpha: 0.3) : AppColors.primary.withValues(alpha: 0.15),
+            width: 1,
+          ),
           boxShadow: isDark ? [] : [
             BoxShadow(
-              color: Colors.black.withValues(alpha: 0.05),
-              blurRadius: 10,
-              offset: const Offset(0, 5),
+              color: Colors.black.withValues(alpha: 0.06),
+              blurRadius: 12,
+              offset: const Offset(0, 4),
             ),
           ],
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            // Icon section
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: theme.primaryColor.withValues(alpha: 0.1),
-                shape: BoxShape.circle,
+                color: iconBgColor,
+                borderRadius: BorderRadius.circular(12),
               ),
-              child: Icon(icon, color: theme.primaryColor, size: 30),
+              child: Icon(icon, color: iconColor, size: 28),
             ),
             const SizedBox(height: 12),
+            // Text section
             Text(
               title,
               textAlign: TextAlign.center,
               style: GoogleFonts.cairo(
-                fontSize: 14,
+                fontSize: 15,
                 fontWeight: FontWeight.bold,
-                color: isDark ? Colors.white : Colors.black87,
+                color: isDark ? AppColors.textDark : AppColors.primary,
               ),
             ),
           ],

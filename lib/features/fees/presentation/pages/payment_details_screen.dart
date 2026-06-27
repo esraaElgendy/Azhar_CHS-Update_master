@@ -366,7 +366,7 @@ class _PaymentDetailsScreenState extends State<PaymentDetailsScreen> {
   Widget _buildCardForm(
       BuildContext context, bool isDark, bool isAr) {
     final fillColor =
-        isDark ? AppColors.inputFillDark : AppColors.inputFillLight;
+        isDark ? AppColors.cardDark : AppColors.inputFillLight;
     final labelColor = isDark ? Colors.white70 : AppColors.primary;
     final hintColor = isDark ? Colors.white38 : AppColors.textMuted;
 
