@@ -11,7 +11,7 @@ class AppColors {
   static const Color backgroundDark = Color(0xff0F0F1A);
 
   // Card & Surface Colors
-  static const Color cardLight = Color(0xffF0F2FF);
+  static const Color cardLight = Color(0xffEDF0FF);
   static const Color cardDark = Color(0xff1C1C2E);
   static const Color surfaceLight = Colors.white;
   static const Color surfaceDark = Color(0xff161626);
@@ -24,7 +24,7 @@ class AppColors {
   static const Color textMuted = Color(0xff999999);
 
   // Input Colors
-  static const Color inputFillLight = Color(0xffF0F2FF);
+  static const Color inputFillLight = Color(0xffEDF0FF);
   static const Color inputFillDark = Color(0xff25253D);
 
   // Semantic Colors
@@ -45,7 +45,7 @@ class AppColors {
   static const Color accent3 = Color(0xffE91E63);
 
   // Borders & Dividers
-  static const Color borderLight = Color(0xffE0E0E0);
+  static const Color borderLight = Color(0xffEDF0FF);
   static const Color borderDark = Color(0xff424242);
   static const Color dividerLight = Color(0xffF0F0F0);
   static const Color dividerDark = Color(0xff2A2A2A);
