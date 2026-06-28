@@ -274,16 +274,31 @@ class FeesScreen extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [AppColors.primary, AppColors.secondary],
+          colors: [
+            const Color(0xffBEBEBE),
+            const Color(0xffD0D0D0),
+            const Color(0xffE8E8E8),
+            Colors.white,
+          ],
+          stops: [0.0, paidPercent * 0.33, paidPercent * 0.66, 1.0],
           begin: isAr ? Alignment.centerRight : Alignment.centerLeft,
           end: isAr ? Alignment.centerLeft : Alignment.centerRight,
         ),
         borderRadius: BorderRadius.circular(AppTypography.radiusL),
+        border: Border.all(
+          color: AppColors.primary.withValues(alpha: 0.3),
+          width: 1,
+        ),
         boxShadow: [
           BoxShadow(
-            color: AppColors.primary.withOpacity(0.3),
-            blurRadius: 16,
-            offset: const Offset(0, 6),
+            color: Colors.black.withValues(alpha: 0.1),
+            blurRadius: 20,
+            offset: const Offset(0, 8),
+          ),
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
           ),
         ],
       ),
@@ -298,29 +313,29 @@ class FeesScreen extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.15),
+                    color: AppColors.primary.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: const Icon(Icons.account_balance_wallet_outlined,
-                      color: Colors.white, size: 26),
+                  child: Icon(Icons.account_balance_wallet_outlined,
+                      color: AppColors.primary, size: 26),
                 ),
               Text(
                 totalLabel,
                 style: GoogleFonts.cairo(
                   fontSize: 14,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white70,
+                  fontWeight: FontWeight.w900,
+                  color: AppColors.textGrey600,
                 ),
               ),
               if (isAr)
                 Container(
                   padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.15),
+                    color: AppColors.primary.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: const Icon(Icons.account_balance_wallet_outlined,
-                      color: Colors.white, size: 26),
+                  child: Icon(Icons.account_balance_wallet_outlined,
+                      color: AppColors.primary, size: 26),
                 ),
             ],
           ),
@@ -332,7 +347,7 @@ class FeesScreen extends StatelessWidget {
             style: GoogleFonts.cairo(
               fontSize: 30,
               fontWeight: FontWeight.w900,
-              color: Colors.white,
+              color: AppColors.primaryDark,
               height: 1.2,
             ),
           ),
@@ -367,7 +382,8 @@ class FeesScreen extends StatelessWidget {
                     paymentStatusLabel,
                     style: GoogleFonts.cairo(
                       fontSize: 12,
-                      color: Colors.white70,
+                      fontWeight: FontWeight.w900,
+                      color: AppColors.textGrey600,
                     ),
                   ),
                   Text(
@@ -375,7 +391,7 @@ class FeesScreen extends StatelessWidget {
                     style: GoogleFonts.cairo(
                       fontSize: 13,
                       fontWeight: FontWeight.w900,
-                      color: Colors.white,
+                      color: AppColors.primaryDark,
                     ),
                   ),
                 ],
@@ -386,8 +402,8 @@ class FeesScreen extends StatelessWidget {
                 child: LinearProgressIndicator(
                   value: paidPercent,
                   minHeight: 10,
-                  backgroundColor: Colors.white.withOpacity(0.2),
-                  valueColor: const AlwaysStoppedAnimation<Color>(Colors.white),
+                  backgroundColor: Colors.grey[300],
+                  valueColor: const AlwaysStoppedAnimation<Color>(AppColors.primary),
                 ),
               ),
             ],
@@ -410,7 +426,7 @@ class FeesScreen extends StatelessWidget {
           label,
           style: GoogleFonts.cairo(
             fontSize: 11,
-            color: Colors.white60,
+            color: AppColors.textGrey600,
           ),
         ),
         Text(
@@ -419,7 +435,7 @@ class FeesScreen extends StatelessWidget {
           style: GoogleFonts.cairo(
             fontSize: 15,
             fontWeight: FontWeight.w900,
-            color: Colors.white,
+            color: AppColors.primaryDark,
           ),
         ),
       ],
@@ -509,21 +525,24 @@ class FeesScreen extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
       decoration: BoxDecoration(
-        color: isDark ? AppColors.cardDark : Colors.white,
-        borderRadius: BorderRadius.circular(AppTypography.radiusM),
+        color: isDark ? AppColors.cardDark : const Color(0xffF5F5F5),
+        borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: isDark ? AppColors.borderDark : AppColors.borderLight,
-          width: 0.8,
+          color: isDark ? AppColors.primary.withValues(alpha: 0.3) : AppColors.primary.withValues(alpha: 0.15),
+          width: 1,
         ),
-        boxShadow: isDark
-            ? []
-            : [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.04),
-                  blurRadius: 10,
-                  offset: const Offset(0, 3),
-                ),
-              ],
+        boxShadow: isDark ? [] : [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.1),
+            blurRadius: 20,
+            offset: const Offset(0, 8),
+          ),
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
       ),
       child: Row(
         children: [
